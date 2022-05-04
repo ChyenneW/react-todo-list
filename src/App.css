@@ -4,6 +4,50 @@
 }
 
 .App-header {
-  font-size: calc(10px + 2vmin);
+  font-size: 20px;
+  background-color: #3c424a;
+  color: rgb(141, 140, 140);
+  justify-content: center;
+  border-bottom: 1px solid #3c424a;
+  padding-top: 5px;
+  margin-bottom: 40px;
+}
+
+.active {
   color: white;
+  border-bottom: 1px solid rgb(250, 125, 112);
+}
+
+.date {
+  justify-content: center;
+  margin-bottom: 40px;
+  color: #bdbfc1;
+}
+
+.taskForm {
+  margin: 0 auto;
+  margin-bottom: 30px;
+  color: rgb(141, 140, 140);
+}
+
+.pinnedTasks {
+  text-align: left;
+  padding: 5px;
+  color: rgb(141, 140, 140);
+}
+
+.pageLiner {
+  max-width: 80%;
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  height: 2px;
+  background-color: #585859;
+}
+
+.tasks {
+  padding: 5px;
+  margin-bottom: 10px;
+  text-align: left;
+  color: rgb(141, 140, 140);
 }
