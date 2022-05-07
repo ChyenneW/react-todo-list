@@ -1,15 +1,12 @@
+import Navigation from "./Navigation";
+
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
 function App() {
   return (
     <div className="App">
-      <header className="row App-header">
-        <div className="col-2 active">Day</div>
-        <div className="col-2">Week</div>
-        <div className="col-2">Month</div>
-        <div className="col-2">Year</div>
-      </header>
+      <Navigation />
       <div className="row date">
         <div className="col-1">⇐</div>
         <div className="col-6">
