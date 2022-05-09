@@ -1,17 +1,25 @@
 import React, { useState } from "react";
+import TaskList from "./TaskList";
 
 export default function TaskForm() {
   let [loaded, setLoad] = useState("unloaded");
   let [enteredTask, setTask] = useState(null);
+  let [taskList, setTaskList] = useState([]);
 
   function updateTask(event) {
     setTask(event.target.value);
   }
 
+  function addTask() {
+    setTaskList([...taskList, enteredTask]);
+    console.log(taskList);
+  }
+
   function submitTask(event) {
     event.preventDefault();
     setLoad("loaded");
-    alert(`New task Entered:${enteredTask}`);
+    alert(`New task Entered: ${enteredTask}`);
+    addTask();
   }
 
   if (loaded === "unloaded") {
@@ -32,13 +40,7 @@ export default function TaskForm() {
           </ul>
         </div>
         <hr className="pageLiner" />
-        <div className="tasks">
-          <ul>
-            <li>task</li>
-            <li>task</li>
-            <li>task</li>
-          </ul>
-        </div>
+        <TaskList fullTaskList={taskList} />
       </div>
     );
   }
