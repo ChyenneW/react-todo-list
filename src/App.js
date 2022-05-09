@@ -1,5 +1,5 @@
 import Navigation from "./Navigation";
-import Date from "./Date";
+import TodaysDate from "./TodaysDate";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
@@ -8,7 +8,7 @@ function App() {
   return (
     <div className="App">
       <Navigation />
-      <Date />
+      <TodaysDate />
       <form className="taskForm">
         <input type="text" placeholder="Enter a Task" />
       </form>
