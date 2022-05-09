@@ -12,7 +12,6 @@ export default function TaskForm() {
 
   function addTask() {
     setTaskList([...taskList, enteredTask]);
-    console.log(taskList);
   }
 
   function submitTask(event) {
