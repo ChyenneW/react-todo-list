@@ -1,5 +1,7 @@
 import React from "react";
 
+import "./TodaysDate.css";
+
 export default function TodaysDate() {
   let now = new Date();
 
@@ -35,14 +37,14 @@ export default function TodaysDate() {
 
   return (
     <div className="row date">
-      <div className="col-1">⇐</div>
-      <div className="col-6">
-        <div>{day}</div>
-        <div>
+      <div className="col-1 dateArrows">⇐</div>
+      <div className="col-5">
+        <div className="day">{day}</div>
+        <div className="fullDate">
           {month} {date}, {year}
         </div>
       </div>
-      <div className="col-1">⇒</div>
+      <div className="col-1 dateArrows">⇒</div>
     </div>
   );
 }
