@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import PinnedTasks from "./PinnedTasks";
 import TaskList from "./TaskList";
 
 export default function TaskForm() {
@@ -43,11 +44,7 @@ export default function TaskForm() {
           onChange={updateTask}
         />
       </form>
-      <div className="pinnedTasks">
-        <ul>
-          <li>pinned tasks</li>
-        </ul>
-      </div>
+      <PinnedTasks />
       <hr className="pageLiner" />
       <TaskList fullTaskList={taskList} />
     </div>
