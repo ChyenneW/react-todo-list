@@ -1,12 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import TaskList from "./TaskList";
 
 export default function TaskForm() {
-  let [loaded, setLoad] = useState("unloaded");
   let [enteredTask, setTask] = useState(null);
   let [taskList, setTaskList] = useState([]);
 
+  useEffect(() => {
+    console.log(localStorage.getItem("savedTaskList"));
+    let loadedTaskList = JSON.parse(localStorage.getItem("savedTaskList"));
+
+    if (loadedTaskList.length !== 0) {
+      setTaskList(loadedTaskList);
+    }
+    console.log(loadedTaskList);
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("savedTaskList", JSON.stringify(taskList));
+  }, [taskList]);
+
   function updateTask(event) {
+    event.preventDefault();
     setTask(event.target.value);
   }
 
@@ -16,31 +30,26 @@ export default function TaskForm() {
 
   function submitTask(event) {
     event.preventDefault();
-    setLoad("loaded");
-    alert(`New task Entered: ${enteredTask}`);
     addTask();
   }
 
-  if (loaded === "unloaded") {
-    return (
+  return (
+    <div>
       <form className="taskForm" onSubmit={submitTask}>
-        <input type="text" placeholder="Enter a Task" onChange={updateTask} />
+        <input
+          type="text"
+          placeholder="Enter a Task"
+          onfocus=" "
+          onChange={updateTask}
+        />
       </form>
-    );
-  } else {
-    return (
-      <div>
-        <form className="taskForm" onSubmit={submitTask}>
-          <input type="text" placeholder="Enter a Task" onChange={updateTask} />
-        </form>
-        <div className="pinnedTasks">
-          <ul>
-            <li>pinned tasks</li>
-          </ul>
-        </div>
-        <hr className="pageLiner" />
-        <TaskList fullTaskList={taskList} />
+      <div className="pinnedTasks">
+        <ul>
+          <li>pinned tasks</li>
+        </ul>
       </div>
-    );
-  }
+      <hr className="pageLiner" />
+      <TaskList fullTaskList={taskList} />
+    </div>
+  );
 }
