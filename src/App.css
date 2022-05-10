@@ -31,3 +31,7 @@
   text-align: left;
   color: rgb(141, 140, 140);
 }
+
+.taskList {
+  list-style: none;
+}
