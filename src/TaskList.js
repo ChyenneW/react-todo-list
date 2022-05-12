@@ -9,17 +9,40 @@ export default function TaskList(props) {
         <ul className="taskList">
           {taskList.map(function (taskItem, index) {
             return (
-              <li key={index}>
-                <div class="form-check form-check-inline">
-                  <label class="form-check-label" for={index}>
-                    <span>{taskItem}</span>
-                  </label>
-                  <input
-                    class="form-check-input"
-                    type="checkbox"
-                    id={index}
-                    value="option1"
-                  />
+              <li className="row" key={index}>
+                <div className="col-7">
+                  <textarea>{taskItem}</textarea>
+                </div>
+                <div class="dropdown col-2">
+                  <button
+                    class="btn btn-secondary dropdown-toggle"
+                    type="button"
+                    id="dropdownMenuButton1"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    <i class="bi bi-three-dots" />
+                  </button>
+                  <ul
+                    class="dropdown-menu"
+                    aria-labelledby="dropdownMenuButton1"
+                  >
+                    <li>
+                      <a class="dropdown-item" href="/">
+                        Edit
+                      </a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="/">
+                        Pin
+                      </a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="/">
+                        Delete
+                      </a>
+                    </li>
+                  </ul>
                 </div>
               </li>
             );
