@@ -29,9 +29,20 @@
   padding: 5px;
   margin-bottom: 10px;
   text-align: left;
-  color: rgb(141, 140, 140);
 }
 
 .taskList {
   list-style: none;
+}
+
+.taskItem {
+  color: rgb(140, 141, 140);
+  background-color: #282c34;
+  border: none;
+  max-height: 33px;
+}
+
+.taskDropdown {
+  border: none;
+  background-color: #282c34;
 }

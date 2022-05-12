@@ -11,24 +11,24 @@ export default function TaskList(props) {
             return (
               <li className="row" key={index}>
                 <div className="col-7">
-                  <textarea>{taskItem}</textarea>
+                  <textarea className="taskItem">{taskItem}</textarea>
                 </div>
-                <div class="dropdown col-2">
+                <div className="dropdown col-2 ">
                   <button
-                    class="btn btn-secondary dropdown-toggle"
+                    className="btn btn-secondary dropdown-toggle taskDropdown"
                     type="button"
                     id="dropdownMenuButton1"
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
                   >
-                    <i class="bi bi-three-dots" />
+                    <i className="bi bi-three-dots" />
                   </button>
                   <ul
-                    class="dropdown-menu"
+                    className="dropdown-menu"
                     aria-labelledby="dropdownMenuButton1"
                   >
                     <li>
-                      <a class="dropdown-item" href="/">
+                      <a className="dropdown-item" href="/">
                         Edit
                       </a>
                     </li>
