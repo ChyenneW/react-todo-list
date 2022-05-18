@@ -13,7 +13,6 @@ export default function TaskForm() {
     if (loadedTaskList.length !== 0) {
       setTaskList(loadedTaskList);
     }
-    console.log(loadedTaskList);
   }, []);
 
   useEffect(() => {
@@ -25,13 +24,16 @@ export default function TaskForm() {
     setTask(event.target.value);
   }
 
-  function addTask() {
-    setTaskList([...taskList, enteredTask]);
+  function deleteTask(id) {
+    let updatedList = taskList.filter((task) => task.taskId !== id);
+    setTaskList(updatedList);
   }
 
   function submitTask(event) {
     event.preventDefault();
-    addTask();
+    let task = { task: enteredTask, taskId: `${enteredTask}-${Date.now()}` };
+    setTaskList([task, ...taskList]);
+    setTask(" ");
   }
 
   return (
@@ -40,13 +42,13 @@ export default function TaskForm() {
         <input
           type="text"
           placeholder="Enter a Task"
-          onfocus=" "
           onChange={updateTask}
+          value={enteredTask}
         />
       </form>
       <PinnedTasks />
       <hr className="pageLiner" />
-      <TaskList fullTaskList={taskList} />
+      <TaskList fullTaskList={taskList} deleteTask={deleteTask} />
     </div>
   );
 }

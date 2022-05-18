@@ -1,17 +1,17 @@
 import React from "react";
 
-export default function TaskList(props) {
-  let taskList = props.fullTaskList;
-
-  if (taskList.length !== 0) {
+export default function TaskList({ fullTaskList, deleteTask }) {
+  if (fullTaskList.length > 0) {
     return (
       <div className="tasks">
         <ul className="taskList">
-          {taskList.map(function (taskItem, index) {
+          {fullTaskList.map(function (task, index) {
             return (
-              <li className="row" key={index}>
+              <li className="row" key={index} id={task.taskId}>
                 <div className="col-7">
-                  <textarea className="taskItem">{taskItem}</textarea>
+                  <textarea className="taskItem" value={task.task}>
+                    {task.task}
+                  </textarea>
                 </div>
                 <div className="dropdown col-2 ">
                   <button
@@ -33,14 +33,17 @@ export default function TaskList(props) {
                       </a>
                     </li>
                     <li>
-                      <a class="dropdown-item" href="/">
+                      <a className="dropdown-item" href="/">
                         Pin
                       </a>
                     </li>
                     <li>
-                      <a class="dropdown-item" href="/">
+                      <button
+                        className="dropdown-item"
+                        onClick={() => deleteTask(task.taskId)}
+                      >
                         Delete
-                      </a>
+                      </button>
                     </li>
                   </ul>
                 </div>
