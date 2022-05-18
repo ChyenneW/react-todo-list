@@ -1,13 +1,13 @@
 import React from "react";
 
-export default function TaskList({ fullTaskList, deleteTask }) {
+export default function TaskList({ fullTaskList, deleteTask, pinTask }) {
   if (fullTaskList.length > 0) {
     return (
       <div className="tasks">
         <ul className="taskList">
           {fullTaskList.map(function (task, index) {
             return (
-              <li className="row" key={index} id={task.taskId}>
+              <li className="row taskListItem" key={index} id={task.taskId}>
                 <div className="col-7">
                   <textarea className="taskItem" value={task.task}>
                     {task.task}
@@ -28,14 +28,15 @@ export default function TaskList({ fullTaskList, deleteTask }) {
                     aria-labelledby="dropdownMenuButton1"
                   >
                     <li>
-                      <a className="dropdown-item" href="/">
-                        Edit
-                      </a>
+                      <button className="dropdown-item">Edit</button>
                     </li>
                     <li>
-                      <a className="dropdown-item" href="/">
+                      <button
+                        className="dropdown-item"
+                        onClick={() => pinTask(task.taskId)}
+                      >
                         Pin
-                      </a>
+                      </button>
                     </li>
                     <li>
                       <button

@@ -5,6 +5,7 @@ import TaskList from "./TaskList";
 export default function TaskForm() {
   let [enteredTask, setTask] = useState(null);
   let [taskList, setTaskList] = useState([]);
+  let [pinnedList, setPinnedList] = useState([]);
 
   useEffect(() => {
     console.log(localStorage.getItem("savedTaskList"));
@@ -16,8 +17,21 @@ export default function TaskForm() {
   }, []);
 
   useEffect(() => {
+    console.log(localStorage.getItem("savedPinnedList"));
+    let loadedPinnedList = JSON.parse(localStorage.getItem("savedPinnedList"));
+
+    if (loadedPinnedList.length !== 0) {
+      setPinnedList(loadedPinnedList);
+    }
+  }, []);
+
+  useEffect(() => {
     localStorage.setItem("savedTaskList", JSON.stringify(taskList));
   }, [taskList]);
+
+  useEffect(() => {
+    localStorage.setItem("savedPinnedList", JSON.stringify(pinnedList));
+  }, [pinnedList]);
 
   function updateTask(event) {
     event.preventDefault();
@@ -29,11 +43,21 @@ export default function TaskForm() {
     setTaskList(updatedList);
   }
 
+  function deletePinnedTask(id) {
+    let updatedPinnedList = pinnedList.filter((task) => task.taskId !== id);
+    setPinnedList(updatedPinnedList);
+  }
+
+  function pinTask(id) {
+    let updatedPinnedList = taskList.filter((task) => task.taskId === id);
+    setPinnedList(updatedPinnedList);
+  }
+
   function submitTask(event) {
     event.preventDefault();
     let task = { task: enteredTask, taskId: `${enteredTask}-${Date.now()}` };
     setTaskList([task, ...taskList]);
-    setTask(" ");
+    setTask("");
   }
 
   return (
@@ -46,9 +70,16 @@ export default function TaskForm() {
           value={enteredTask}
         />
       </form>
-      <PinnedTasks />
+      <PinnedTasks
+        fullPinnedList={pinnedList}
+        deletePinnedTask={deletePinnedTask}
+      />
       <hr className="pageLiner" />
-      <TaskList fullTaskList={taskList} deleteTask={deleteTask} />
+      <TaskList
+        fullTaskList={taskList}
+        deleteTask={deleteTask}
+        pinTask={pinTask}
+      />
     </div>
   );
 }

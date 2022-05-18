@@ -35,11 +35,17 @@
   list-style: none;
 }
 
+.taskListItem {
+  margin: 0 auto;
+  justify-content: center;
+}
+
 .taskItem {
   color: rgb(140, 141, 140);
   background-color: #282c34;
   border: none;
   max-height: 33px;
+  text-align: center;
 }
 
 .taskDropdown {
