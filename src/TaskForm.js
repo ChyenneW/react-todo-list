@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import PinnedTasks from "./PinnedTasks";
 import TaskList from "./TaskList";
 
 export default function TaskForm() {
   let [enteredTask, setTask] = useState(null);
   let [taskList, setTaskList] = useState([]);
   let [pinnedList, setPinnedList] = useState([]);
+  let [trackPins, setTrack] = useState("untracked");
 
   useEffect(() => {
     console.log(localStorage.getItem("savedTaskList"));
@@ -23,7 +23,7 @@ export default function TaskForm() {
     if (loadedPinnedList.length !== 0) {
       setPinnedList(loadedPinnedList);
     }
-  }, []);
+  }, [trackPins]);
 
   useEffect(() => {
     localStorage.setItem("savedTaskList", JSON.stringify(taskList));
@@ -31,6 +31,7 @@ export default function TaskForm() {
 
   useEffect(() => {
     localStorage.setItem("savedPinnedList", JSON.stringify(pinnedList));
+    setTrack("untracked");
   }, [pinnedList]);
 
   function updateTask(event) {
@@ -49,9 +50,11 @@ export default function TaskForm() {
   }
 
   function pinTask(id) {
-    let pin = [...taskList].filter((task) => task.taskId === id);
-    let updatedList = [...taskList].filter((task) => task.taskId !== id);
+    let pin = taskList.filter((task) => task.taskId === id);
+    console.log(pin);
+    let updatedList = taskList.filter((task) => task.taskId !== id);
     setPinnedList([pin, ...pinnedList]);
+    setTrack("tracked");
     setTaskList(updatedList);
   }
 
@@ -72,10 +75,6 @@ export default function TaskForm() {
           value={enteredTask}
         />
       </form>
-      <PinnedTasks
-        fullPinnedList={pinnedList}
-        deletePinnedTask={deletePinnedTask}
-      />
       <hr className="pageLiner" />
       <TaskList
         fullTaskList={taskList}
