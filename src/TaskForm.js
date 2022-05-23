@@ -49,9 +49,9 @@ export default function TaskForm() {
   }
 
   function pinTask(id) {
-    let updatedPinnedList = taskList.filter((task) => task.taskId === id);
-    let updatedList = taskList.filter((task) => task.taskId !== id);
-    setPinnedList(updatedPinnedList);
+    let pin = [...taskList].filter((task) => task.taskId === id);
+    let updatedList = [...taskList].filter((task) => task.taskId !== id);
+    setPinnedList([pin, ...pinnedList]);
     setTaskList(updatedList);
   }
 
